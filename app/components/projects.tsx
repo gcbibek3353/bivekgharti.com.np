@@ -55,7 +55,7 @@ export function Projects() {
                 className="rounded-full p-2 transition-transform transform hover:scale-110 hover:bg-primary hover:text-primary-foreground"
               >
                 <a
-                  href={project.githubUrl}
+                  href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
