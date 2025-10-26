@@ -15,7 +15,7 @@ export function Education() {
           </div>
           <div className="text-left md:text-right">
             <p className="text-muted-foreground">Sep 2023 - Apr 2027</p>
-            <p className="text-secondary-foreground">Current Cgpa: 9.8</p>
+            <p className="text-secondary-foreground">Current Cgpa: 9.4</p>
           </div>
         </div>
       </div>
