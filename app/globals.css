@@ -4,48 +4,64 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    /* Ivory paper / warm ink — light theme */
+    --background: 42 33% 95%;
+    --foreground: 35 20% 9%;
+    --card: 40 40% 99%;
+    --card-foreground: 35 20% 9%;
+    --popover: 40 40% 99%;
+    --popover-foreground: 35 20% 9%;
+    --primary: 33 82% 52%;
+    --primary-foreground: 35 30% 10%;
+    --secondary: 40 24% 91%;
+    --secondary-foreground: 35 20% 12%;
+    --muted: 40 24% 91%;
+    --muted-foreground: 35 8% 40%;
+    --accent: 40 30% 88%;
+    --accent-foreground: 35 20% 12%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 40 40% 98%;
+    --border: 38 20% 84%;
+    --input: 38 20% 84%;
+    --ring: 33 82% 52%;
     --radius: 0.5rem;
+
+    /* Marigold heatmap ramp — light */
+    --heat-0: 40 22% 89%;
+    --heat-1: 36 70% 80%;
+    --heat-2: 34 78% 66%;
+    --heat-3: 32 82% 55%;
+    --heat-4: 26 80% 44%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    /* Warm near-black ink — dark theme */
+    --background: 30 16% 7%;
+    --foreground: 42 33% 94%;
+    --card: 34 15% 10%;
+    --card-foreground: 42 33% 94%;
+    --popover: 34 15% 10%;
+    --popover-foreground: 42 33% 94%;
+    --primary: 35 88% 60%;
+    --primary-foreground: 30 30% 9%;
+    --secondary: 34 12% 14%;
+    --secondary-foreground: 42 33% 94%;
+    --muted: 34 12% 14%;
+    --muted-foreground: 38 10% 60%;
+    --accent: 34 14% 17%;
+    --accent-foreground: 42 33% 94%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 42 33% 94%;
+    --border: 34 12% 18%;
+    --input: 34 12% 18%;
+    --ring: 35 88% 60%;
+
+    /* Marigold heatmap ramp — dark */
+    --heat-0: 34 10% 15%;
+    --heat-1: 32 45% 28%;
+    --heat-2: 33 62% 40%;
+    --heat-3: 34 78% 52%;
+    --heat-4: 37 90% 62%;
   }
 }
 
@@ -53,8 +69,83 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.28);
+  }
+  /* Grain-free thin scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 999px;
+    border: 3px solid hsl(var(--background));
   }
 }
 
+@layer components {
+  /* Monospace utility label — the recurring structural device */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground;
+  }
+}
+
+/* Heatmap cell levels — kept outside @layer so Tailwind never purges these
+   dynamically-composed (`heat-lvl-${level}` / `gh-lvl-${level}`) class names. */
+.heat-lvl-0 { background: hsl(var(--heat-0)); }
+.heat-lvl-1 { background: hsl(var(--heat-1)); }
+.heat-lvl-2 { background: hsl(var(--heat-2)); }
+.heat-lvl-3 { background: hsl(var(--heat-3)); }
+.heat-lvl-4 { background: hsl(var(--heat-4)); }
+
+/* GitHub's own contribution-graph green ramp (light theme values). */
+.gh-lvl-0 { background: #ebedf0; }
+.gh-lvl-1 { background: #9be9a8; }
+.gh-lvl-2 { background: #40c463; }
+.gh-lvl-3 { background: #30a14e; }
+.gh-lvl-4 { background: #216e39; }
+/* GitHub's dark-theme green ramp. */
+.dark .gh-lvl-0 { background: #161b22; }
+.dark .gh-lvl-1 { background: #0e4429; }
+.dark .gh-lvl-2 { background: #006d32; }
+.dark .gh-lvl-3 { background: #26a641; }
+.dark .gh-lvl-4 { background: #39d353; }
+
+/* Page-load reveal */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.82); }
+}
+
+.status-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .status-dot { animation: none; }
+  .rise { opacity: 1; transform: none; }
+}
