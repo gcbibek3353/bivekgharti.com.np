@@ -44,18 +44,19 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <nav className="flex flex-col gap-0.5">
       {navLinks.map((link, i) => {
-        const active = pathname === link.href
+        const active =
+          pathname === link.href ||
+          (link.href !== "/" && pathname.startsWith(link.href + "/"))
         return (
           <Link
             key={link.href}
             href={link.href}
             onClick={onNavigate}
             aria-current={active ? "page" : undefined}
-            className={`group flex items-center gap-3 rounded-md px-3 py-2 font-mono text-sm transition-colors ${
-              active
-                ? "bg-secondary text-foreground"
-                : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
-            }`}
+            className={`group flex items-center gap-3 rounded-md px-3 py-2 font-mono text-sm transition-colors ${active
+              ? "bg-secondary text-foreground"
+              : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
+              }`}
           >
             <span
               className={`text-xs tabular-nums ${active ? "text-primary" : "text-muted-foreground/60"}`}
@@ -64,9 +65,8 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
             </span>
             <span className="tracking-tight">{link.label}</span>
             <span
-              className={`ml-auto h-1.5 w-1.5 rounded-full bg-primary transition-opacity ${
-                active ? "opacity-100" : "opacity-0"
-              }`}
+              className={`ml-auto h-1.5 w-1.5 rounded-full bg-primary transition-opacity ${active ? "opacity-100" : "opacity-0"
+                }`}
             />
           </Link>
         )
@@ -101,7 +101,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <div className="eyebrow">Connect</div>
           <ConnectRow />
           <div className="flex items-center justify-between pt-2">
-            <StatusPill />
+            {/* <StatusPill /> */}
             <ThemeToggle />
           </div>
         </div>
@@ -148,7 +148,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <footer className="mx-auto max-w-3xl px-5 sm:px-8 lg:px-14 pb-10">
           <div className="flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-mono text-xs text-muted-foreground">
-              © {profile.name.split(" ")[0]} — built with Next.js
+              © {profile.name.split(" ")[0]} {profile.name.split(" ")[1]}
             </p>
             <ConnectRow compact />
           </div>

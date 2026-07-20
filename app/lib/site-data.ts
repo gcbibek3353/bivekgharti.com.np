@@ -19,6 +19,7 @@ export const navLinks: { label: string; href: string; path: string }[] = [
   { label: "Home", href: "/", path: "~/home" },
   { label: "Experience", href: "/experience", path: "~/experience" },
   { label: "Projects", href: "/projects", path: "~/projects" },
+  { label: "Blog", href: "/blog", path: "~/blog" },
   { label: "Tech Skills", href: "/skills", path: "~/skills" },
   { label: "Education", href: "/education", path: "~/education" },
 ]
