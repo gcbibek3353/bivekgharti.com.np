@@ -1,6 +1,6 @@
 # First Interview Experience
 
-→ Placements Season was going on the Company. Everyone in the college were serious for placements this time. But I never took placements that seriously because I was confident I can clear technical interviews. I applied for this company also just to get the experience of real interview. I had zero research on the company or the role before having interview. Still I decided to attend the interview and went to city Campus.
+→ Placements Season was going on the College. Everyone in the college were serious for placements this time. But I never took placements that seriously because I was confident I can clear technical interviews. I applied for this company also just to get the experience of real interview. I had zero research on the company or the role before having interview. Still I decided to attend the interview and went to city Campus.
 
 → We were instructed to appear to interview hall by 8:30 AM. I along with my 3 friends reached interview hall by 9 AM. Yes, we were late but the placements Orientation started only at 10:30 AM. I thought it will be a mix of technical & aptitude MCQ exam but I was shocked to know that 1st round was actually paper coding DSA round. But I was happy because I can write answers clearly and of course it was difficult for other students to cheat.
 
