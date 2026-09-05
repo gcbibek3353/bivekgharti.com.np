@@ -1,7 +1,13 @@
 import { PageHeader } from "../components/page-header"
 import { skills } from "../lib/site-data"
+import { pageMeta } from "../lib/seo"
 
-export const metadata = { title: "Tech Skills — Bivek Gharti" }
+export const metadata = pageMeta({
+  title: "Tech Skills",
+  description:
+    "The stack Bivek Gharti reaches for — TypeScript, React, Next.js, Express, PostgreSQL, Prisma, Redis, Docker and more, with a bias toward shipping full products.",
+  path: "/skills",
+})
 
 export default function SkillsPage() {
   return (

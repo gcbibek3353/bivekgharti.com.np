@@ -1,8 +1,14 @@
 import { Github, Globe, Smartphone, Lock, ArrowUpRight, ExternalLink } from "lucide-react"
 import { PageHeader } from "../components/page-header"
 import { projects, projectsNotionUrl } from "../lib/site-data"
+import { pageMeta } from "../lib/seo"
 
-export const metadata = { title: "Projects — Bivek Gharti" }
+export const metadata = pageMeta({
+  title: "Projects",
+  description:
+    "Projects by Bivek Gharti — ACEPTE (a PTE test platform), LookAroundPG (200+ live PG listings), YesSir Vehicle Rentals, InterviewGPT and AlumUnity, built with Next.js, TypeScript and Postgres.",
+  path: "/projects",
+})
 
 function LinkButton({
   href,

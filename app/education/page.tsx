@@ -1,8 +1,14 @@
 import { GraduationCap } from "lucide-react"
 import { PageHeader } from "../components/page-header"
 import { education } from "../lib/site-data"
+import { pageMeta } from "../lib/seo"
 
-export const metadata = { title: "Education — Bivek Gharti" }
+export const metadata = pageMeta({
+  title: "Education",
+  description:
+    "Bivek Gharti's education — B.Tech in Computer Science & Engineering at Jain University (CGPA 9.4), Grade 12 at Sainik Awasiya Mahavidyalaya (94.25%) and Grade 10 (97.5%).",
+  path: "/education",
+})
 
 export default function EducationPage() {
   return (

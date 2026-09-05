@@ -1,8 +1,14 @@
 import { ArrowUpRight, ExternalLink } from "lucide-react"
 import { PageHeader } from "../components/page-header"
 import { experience, experienceNotionUrl } from "../lib/site-data"
+import { pageMeta } from "../lib/seo"
 
-export const metadata = { title: "Experience — Bivek Gharti" }
+export const metadata = pageMeta({
+  title: "Experience",
+  description:
+    "Bivek Gharti's professional experience — Frontend Developer at Hyperce, Head of Technology at GDG on Campus FET JU, plus full stack and SDE roles spanning backend, frontend and DevOps.",
+  path: "/experience",
+})
 
 export default function ExperiencePage() {
   return (

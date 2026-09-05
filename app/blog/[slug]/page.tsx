@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, CalendarDays, Clock } from "lucide-react"
@@ -10,14 +11,33 @@ import {
   formatBlogDate,
   readingTime,
 } from "../../lib/blog"
+import { JsonLd } from "../../components/json-ld"
+import { abs, siteUrl } from "../../lib/seo"
+import { profile } from "../../lib/site-data"
 
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const post = getBlogPost(params.slug)
-  return { title: post ? `${post.title} — Bivek Gharti` : "Blog — Bivek Gharti" }
+  if (!post) return { title: "Blog" }
+
+  const url = abs(`/blog/${post.slug}`)
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      authors: [profile.name],
+    },
+    twitter: { title: post.title, description: post.description },
+  }
 }
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
@@ -25,9 +45,27 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   if (!post) notFound()
 
   const content = await getBlogContent(post)
+  const url = abs(`/blog/${post.slug}`)
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    datePublished: post.date,
+    dateModified: post.date,
+    wordCount: content.trim().split(/\s+/).length,
+    inLanguage: "en",
+    author: { "@type": "Person", "@id": `${siteUrl}/#person`, name: profile.name, url: siteUrl },
+    publisher: { "@id": `${siteUrl}/#person` },
+  }
 
   return (
     <article className="rise">
+      <JsonLd data={articleJsonLd} />
       <Link
         href="/blog"
         className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"

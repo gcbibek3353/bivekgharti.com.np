@@ -2,8 +2,14 @@ import Link from "next/link"
 import { ArrowUpRight, CalendarDays } from "lucide-react"
 import { PageHeader } from "../components/page-header"
 import { blogPosts, formatBlogDate } from "../lib/blog"
+import { pageMeta } from "../lib/seo"
 
-export const metadata = { title: "Blog — Bivek Gharti" }
+export const metadata = pageMeta({
+  title: "Blog",
+  description:
+    "Notes, experiences and things Bivek Gharti learns along the way — interviews, engineering and shipping real products.",
+  path: "/blog",
+})
 
 export default function BlogPage() {
   const posts = [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1))
