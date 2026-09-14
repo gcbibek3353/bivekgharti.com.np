@@ -20,6 +20,14 @@ export const blogPosts: BlogPost[] = [
       "How my first physical placement interview went — paper DSA, three rounds and why it turned out easier than expected.",
     file: "firstInterview.md",
   },
+  {
+    slug: "0to1-journey",
+    title: "my journey from 0 -> 1 as a Software Engineer",
+    date: "2026-09-14",
+    description:
+      "A journey of a software engineer from 0 to 1, from learning the basics to building real-world applications and contributing to open-source projects.",
+    file: "0to1journey.md",
+  },
 ]
 
 const blogsDir = path.join(process.cwd(), "blogs")
